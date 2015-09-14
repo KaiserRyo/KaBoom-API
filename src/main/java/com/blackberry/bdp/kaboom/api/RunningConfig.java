@@ -16,10 +16,12 @@
 package com.blackberry.bdp.kaboom.api;
 
 import com.blackberry.bdp.common.versioned.ZkVersioned;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.curator.framework.CuratorFramework;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class RunningConfig extends ZkVersioned {
 	@Getter @Setter public Boolean allowOffsetOverrides = false;
 	@Getter @Setter public Boolean sinkToHighWatermark = false;
