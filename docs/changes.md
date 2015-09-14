@@ -4,3 +4,4 @@
 
 * Initial stand-alone version after being separated from KaBoom
 * Minor changes to remove dependency of KaBoom's StartupConfig (which only supplied the curator framework)
+* Removed all references to _READY flags, flag writers/propagator from entire project

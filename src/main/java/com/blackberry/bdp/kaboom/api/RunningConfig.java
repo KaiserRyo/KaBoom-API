@@ -25,7 +25,6 @@ public class RunningConfig extends ZkVersioned {
 	@Getter @Setter public Boolean sinkToHighWatermark = false;
 	@Getter @Setter public Boolean useTempOpenFileDirectory = true;		
 	@Getter @Setter public Boolean useNativeCompression = false;
-	@Getter @Setter public Integer readyFlagPrevHoursCheck = 24;
 	@Getter @Setter public long leaderSleepDurationMs = 10 * 60 * 1000;
 	@Getter @Setter public short compressionLevel = 6;
 	@Getter @Setter public int boomFileBufferSize = 16 * 1024;
@@ -36,12 +35,8 @@ public class RunningConfig extends ZkVersioned {
 	@Getter @Setter public long kaboomServerSleepDurationMs = 10 * 1000;
 	@Getter @Setter public long fileCloseGraceTimeAfterExpiredMs = 30 * 1000;
 	@Getter @Setter public long forcedZkOffsetTsUpdateMs = 10 * 60 * 1000;
-	@Getter @Setter public String kafkaReadyFlagFilename = "_READY";
 	@Getter @Setter public int maxOpenBoomFilesPerPartition = 5;	
-	@Getter @Setter public long workerSprintDurationSeconds = 60 * 60;
-	@Getter @Setter public boolean propagateReadyFlags = false;
-	@Getter @Setter public long propagateReadyFlagFrequency = 10 * 60 *  1000;
-	@Getter @Setter public long propateReadyFlagDelayBetweenPathsMs = 0;
+	@Getter @Setter public long workerShiftDurationSeconds = 60 * 60;
 	@Getter @Setter public long newLeaderCalmDownDelay = 30 * 1000;
 	@Getter @Setter public long assignmentLockTimeout = 3 * 1000;
 

@@ -31,8 +31,6 @@ public class KaBoomClient extends ZkVersioned {
 	private int weight;
 	private int partitionLoad;
 	private double targetPartitionLoad;
-	private double targetFlagPropagatorLoad = 0.0;
-	private final List<KaBoomTopic> assignedFlagPropagatorTopics = new ArrayList<>();
 	private final List<KaBoomPartition> assignedPartitions = new ArrayList<>();
 	private static final Charset UTF8 = Charset.forName("UTF-8");
 	private static final Logger LOG = LoggerFactory.getLogger(KaBoomClient.class);
@@ -58,17 +56,8 @@ public class KaBoomClient extends ZkVersioned {
 		LOG.debug("Client ID {} target partition load is {}", id, targetPartitionLoad);
 	}
 
-	public void calculateFlagPropagatorTargetLoad(int totalPaths, int totalWeight) {		
-		targetFlagPropagatorLoad = (totalPaths * (1.0 * weight / totalWeight));
-		LOG.debug("Client ID {} target flag propagator load is {}", id, targetFlagPropagatorLoad);
-	}
-
 	public boolean tooManyAssignedPartitions() {
 		return assignedPartitions.size() > targetPartitionLoad + 1;
-	}
-
-	public boolean tooManyAssignedFlags() {
-		return assignedFlagPropagatorTopics.size() > targetFlagPropagatorLoad + 1;
 	}
 
 	public List<String> getAssignments(CuratorFramework curator, String zkRootPath) throws Exception {
@@ -153,27 +142,6 @@ public class KaBoomClient extends ZkVersioned {
 	 */
 	public double getTargetPartitionLoad() {
 		return targetPartitionLoad;
-	}
-
-	/**
-	 * @return the targetFlagPropagatorLoad
-	 */
-	public double getTargetFlagPropagatorLoad() {
-		return targetFlagPropagatorLoad;
-	}
-
-	/**
-	 * @param flagPropagatorTargetLoad the targetFlagPropagatorLoad to set
-	 */
-	public void setTargetFlagPropagatorLoad(double flagPropagatorTargetLoad) {
-		this.targetFlagPropagatorLoad = flagPropagatorTargetLoad;
-	}
-
-	/**
-	 * @return the assignedFlagPropagatorTopics
-	 */
-	public List<KaBoomTopic> getAssignedFlagPropagatorTopics() {
-		return assignedFlagPropagatorTopics;
 	}
 
 	/**
