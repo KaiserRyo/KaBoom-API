@@ -144,6 +144,11 @@ public class KaBoomTopic {
 		return kafkaTopic.getName();
 	}
 
+	/**
+	 * Get the max partition committed timestamp
+	 * @return
+	 * @throws Exception
+	 */
 	public Long oldestPartitionOffset() throws Exception {
 		Long oldestTimestamp = null;
 		for (KaBoomPartition partiton : partitions) {
